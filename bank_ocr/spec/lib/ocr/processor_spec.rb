@@ -22,12 +22,12 @@ describe OCR::Processor do
       subject.process
     end
 
-    it "should return an array of parsed numbers" do
+    it "should return an array of [parsed, code]" do
       subject.process.should == [
-        "457508000",
-        "664371495",
-        "86110??36",
-        "888888888"
+        ["457508000", :ok],
+        ["664371495", :err],
+        ["86110??36", :ill],
+        ["888888888", :err]
       ]
     end
   end

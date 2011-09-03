@@ -13,7 +13,8 @@ module OCR
         until f.eof?
           lines << f.readline
           if lines.length == 4
-            processed << OCR::ChunkParser.new(OCR::LineChunker.new(lines).to_a).parsed
+            parsed = OCR::ChunkParser.new(OCR::LineChunker.new(lines).to_a).parsed
+            processed << [parsed, calculate_checksum(parsed)]
             lines = []
           end
         end
