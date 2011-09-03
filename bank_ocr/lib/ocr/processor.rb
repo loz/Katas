@@ -20,5 +20,24 @@ module OCR
       end
       processed
     end
+
+    def calculate_checksum(string)
+      return :ill unless string.match /^\d+$/
+      if calculate_sum(string).zero?
+        :ok
+      else
+        :err
+      end
+    end
+
+    def calculate_sum(string)
+      total = 0
+      chars = string.reverse.chars.to_a
+      chars.each_index  do |idx|
+        c = chars[idx]
+        total += ((idx+1) * c.to_i)
+      end
+      total % 11
+    end
   end
 end
