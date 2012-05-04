@@ -65,13 +65,13 @@ describe LEDPrinter do
                                        " _|"
       end
 
-      it "prints multiple digit numbers in one line" do
-        subject.print_num(123).should == "    _  _ \n" \
-                                         "  | _| _|\n" \
-                                         "  ||_  _|"
-        subject.print_num(456).should == "    _  _ \n" \
-                                         "|_||_ |_ \n" \
-                                         "  | _||_|"
+      it "prints multiple digit numbers in one line, one space between each digit" do
+        subject.print_num(123).should == "     _   _ \n" \
+                                         "  |  _|  _|\n" \
+                                         "  | |_   _|"
+        subject.print_num(456).should == "     _   _ \n" \
+                                         "|_| |_  |_ \n" \
+                                         "  |  _| |_|"
       end
     end
   end

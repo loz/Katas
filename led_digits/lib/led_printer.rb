@@ -60,7 +60,7 @@ class LEDPrinter
   end
 
   def join_digits(digits)
-    digits.map {|d| d.split "\n" }.transpose.map {|l| l.join('')}.join("\n")
+    digits.map {|d| d.split "\n" }.transpose.map {|l| l.join(' ')}.join("\n")
   end
 
   def digits(n)
