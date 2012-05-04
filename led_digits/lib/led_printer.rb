@@ -39,10 +39,25 @@ class LEDPrinter
   end
 
   def print_num(n)
-    join_digits(digits(n).map {|d| NUMS[d] })
+    join_digits(digits(n).map {|d| scale_digit(NUMS[d]) })
   end
 
   private
+
+  def scale_digit(digit)
+    return digit if @size <= 1
+    top, mid, bottom = digit.split("\n").map {|r| scale_horizontal(r) }
+    rows = [top]
+    (@size-1).times { rows << mid.gsub('_', ' ') }
+    rows << mid
+    (@size-1).times { rows << bottom.gsub('_', ' ') }
+    rows << bottom
+    rows.join("\n")
+  end
+
+  def scale_horizontal(row)
+    [row[0], row[1] * @size, row[2]].join
+  end
 
   def join_digits(digits)
     digits.map {|d| d.split "\n" }.transpose.map {|l| l.join('')}.join("\n")

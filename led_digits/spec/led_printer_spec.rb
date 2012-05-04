@@ -80,5 +80,13 @@ describe LEDPrinter do
     subject { described_class.new 2}
 
     its(:size) { should == 2 }
+
+    it "prints digits twice the size" do
+      subject.print_num(8).should == " __ \n" \
+                                     "|  |\n" \
+                                     "|__|\n" \
+                                     "|  |\n" \
+                                     "|__|"
+    end
   end
 end
