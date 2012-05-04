@@ -64,6 +64,21 @@ describe LEDPrinter do
                                        "|_|\n" \
                                        " _|"
       end
+
+      it "prints multiple digit numbers in one line" do
+        subject.print_num(123).should == "    _  _ \n" \
+                                         "  | _| _|\n" \
+                                         "  ||_  _|"
+        subject.print_num(456).should == "    _  _ \n" \
+                                         "|_||_ |_ \n" \
+                                         "  | _||_|"
+      end
     end
+  end
+
+  describe "When size is two" do
+    subject { described_class.new 2}
+
+    its(:size) { should == 2 }
   end
 end
