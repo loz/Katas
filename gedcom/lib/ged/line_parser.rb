@@ -1,4 +1,4 @@
-class GEDParser
+module GED
   class LineParser
     def initialize(line)
       @line = line
