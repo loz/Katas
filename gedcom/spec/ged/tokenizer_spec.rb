@@ -19,6 +19,10 @@ describe GED::Tokenizer do
   end
 
   describe :process do
+    it "ignores nil values" do
+      subject.process(nil).should be_nil
+    end
+
     describe "When new line level is same as current level" do
       let(:line) { {:level => 1, :tag => "ATAG", :value => 'The value'} }
       let(:line2) { {:level => 1, :tag => "OTHR", :value => 'Another Value'} }

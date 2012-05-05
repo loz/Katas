@@ -8,6 +8,7 @@ module GED
     end
 
     def process(parsed)
+      return unless parsed
       attrs = {}
 
       if parsed[:tag]

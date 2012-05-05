@@ -5,12 +5,13 @@ module GED
     end
 
     def parsed
+      return if @line.empty?
       tokens = @line.scan /\s*([^\s]+)\s*([^\s]+)\s*(.*)/
       level, idortag, value = tokens.first
       values = {
         :level => level.to_i,
-        :value => value
       }
+      values[:value] = value unless value.empty?
       if idortag.match /^@.*@$/
         values[:id] = idortag
       else

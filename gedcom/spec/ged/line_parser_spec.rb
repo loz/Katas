@@ -19,4 +19,18 @@ describe GED::LineParser do
       :value => "Some Value For /Attr/"
     }
   end
+
+  it "ignores blank lines" do
+    parser = described_class.new ""
+    parser.parsed.should be_nil
+  end
+
+  context "when no value is present" do
+    let(:novalue) { "5 ATTR" }
+
+    it "includes no :value element" do
+      parser = described_class.new novalue
+      parser.parsed.should_not include :value
+    end
+  end
 end
