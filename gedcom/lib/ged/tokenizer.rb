@@ -23,8 +23,10 @@ module GED
         @level = parsed[:level]
         @current_node = @current_node.children.last
       elsif parsed[:level] < @level
-        @level = parsed[:level]
-        @current_node = @current_node.parent
+        while @level > parsed[:level]
+          @level -= 1
+          @current_node = @current_node.parent
+        end
       end
 
       attrs[:parent] = @current_node
