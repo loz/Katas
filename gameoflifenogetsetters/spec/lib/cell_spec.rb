@@ -1,30 +1,30 @@
 require 'spec_helper'
 
 class Me
-  attr_reader :nudges
+  attr_reader :interacts
 
   def initialize
-    @nudges = 0
+    @interactions = 0
   end
 
-  def nudge(nudger)
-    @nudges += 1
+  def interact(interacter)
+    @interactions += 1
   end
 
-  def nudged?
-    @nudges > 0
+  def interacted?
+    @interactions > 0
   end
 end
 
 describe Cell do
   let(:me) { Me.new }
 
-  describe "when nudged" do
+  describe "when interacted with" do
     context "and the cell is alive" do
-      it "nudges back" do
-        subject.nudge(me)
+      it "interacts back" do
+        subject.interact(me)
 
-        me.should be_nudged
+        me.should be_interacted
       end
     end
 
@@ -33,9 +33,9 @@ describe Cell do
         subject.live.live.live.live #no interraction should be DEAD
       end
 
-      it "does not nudge back" do
-        subject.nudge(me)
-        me.should_not be_nudged
+      it "does not interact back" do
+        subject.interact(me)
+        me.should_not be_interacted
       end
     end
   end
@@ -46,8 +46,8 @@ describe Cell do
       it "does not live on" do
         subject.live
 
-        subject.nudge(me)
-        me.should_not be_nudged
+        subject.interact(me)
+        me.should_not be_interacted
       end
     end
 
@@ -64,9 +64,9 @@ describe Cell do
       end
 
       it "lives" do
-        subject.nudge(me)
+        subject.interact(me)
 
-        me.should be_nudged
+        me.should be_interacted
       end
     end
 
@@ -82,10 +82,72 @@ describe Cell do
         @cells.each {|c| c.live }
       end
 
-      it "does not survive" do
-        subject.nudge(me)
+      it "dies from under-population" do
+        subject.interact(me)
 
-        me.should_not be_nudged
+        me.should_not be_interacted
+      end
+    end
+
+    context "when more than 3 live neighbors" do
+      before :each do
+        @cells = [subject]
+        4.times do
+          cell = described_class.new
+          subject << cell
+          @cells << cell
+        end
+
+        @cells.each {|c| c.live }
+      end
+
+      it "dies from overcrowding" do
+        subject.interact(me)
+
+        me.should_not be_interacted
+      end
+    end
+
+    context "when cell is currently dead" do
+      before :each do
+        subject.live.live.live
+      end
+
+      context "and it has only 2 live neighbors" do
+        before :each do
+          @cells = [subject]
+          2.times do
+            cell = described_class.new
+            subject << cell
+            @cells << cell
+          end
+
+          @cells.each {|c| c.live }
+        end
+
+        it "should stay dead" do
+          subject.interact(me)
+          me.should_not be_interacted
+        end
+      end
+
+      context "and it has 3 live neighbors" do
+        before :each do
+          @cells = [subject]
+          3.times do
+            cell = described_class.new
+            subject << cell
+            @cells << cell
+          end
+
+          @cells.each {|c| c.live }
+        end
+
+        it "becomes alive by reproduction" do
+          subject.interact(me)
+
+          me.should be_interacted
+        end
       end
     end
   end
