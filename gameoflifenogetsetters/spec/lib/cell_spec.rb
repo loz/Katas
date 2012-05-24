@@ -7,7 +7,7 @@ class Me
     @interactions = 0
   end
 
-  def interact(interacter)
+  def interact(interacter, year)
     @interactions += 1
   end
 
@@ -29,9 +29,7 @@ describe Cell do
     end
 
     context "and the cell is dead" do
-      before :each do
-        subject.live.live.live.live #no interraction should be DEAD
-      end
+      subject { described_class.new :dead }
 
       it "does not interact back" do
         subject.interact(me)
@@ -44,9 +42,9 @@ describe Cell do
 
     context "when cell has no neigbors" do
       it "does not live on" do
-        subject.live
+        subject.live(1)
 
-        subject.interact(me)
+        subject.interact(me, 1)
         me.should_not be_interacted
       end
     end
@@ -74,16 +72,16 @@ describe Cell do
       before :each do
         @cells = [subject]
         alive = described_class.new
-        dead  = described_class.new.live
+        dead  = described_class.new :dead
         subject << alive
         subject << dead
         @cells <<  dead << alive
 
-        @cells.each {|c| c.live }
+        @cells.each {|c| c.live(0) }
       end
 
       it "dies from under-population" do
-        subject.interact(me)
+        subject.interact(me, 1)
 
         me.should_not be_interacted
       end
@@ -98,20 +96,18 @@ describe Cell do
           @cells << cell
         end
 
-        @cells.each {|c| c.live }
+        @cells.each {|c| c.live(0) }
       end
 
       it "dies from overcrowding" do
-        subject.interact(me)
+        subject.interact(me, 1)
 
         me.should_not be_interacted
       end
     end
 
     context "when cell is currently dead" do
-      before :each do
-        subject.live.live.live
-      end
+      subject { described_class.new :dead }
 
       context "and it has only 2 live neighbors" do
         before :each do
@@ -140,11 +136,11 @@ describe Cell do
             @cells << cell
           end
 
-          @cells.each {|c| c.live }
+          @cells.each {|c| c.live(0) }
         end
 
         it "becomes alive by reproduction" do
-          subject.interact(me)
+          subject.interact(me, 1)
 
           me.should be_interacted
         end
