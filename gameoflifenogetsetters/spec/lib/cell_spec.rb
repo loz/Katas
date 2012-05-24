@@ -30,7 +30,7 @@ describe Cell do
 
     context "and the cell is dead" do
       before :each do
-        subject.live.live.live.live #no interraction should be DEAD
+        subject.inhale.exhale.inhale.exhale #no interraction should be DEAD
       end
 
       it "does not interact back" do
@@ -44,7 +44,7 @@ describe Cell do
 
     context "when cell has no neigbors" do
       it "does not live on" do
-        subject.live
+        subject.inhale.exhale
 
         subject.interact(me)
         me.should_not be_interacted
@@ -60,7 +60,8 @@ describe Cell do
           @cells << cell
         end
 
-        @cells.each {|c| c.live }
+        @cells.each {|c| c.inhale}
+        @cells.each {|c| c.exhale }
       end
 
       it "lives" do
@@ -74,12 +75,13 @@ describe Cell do
       before :each do
         @cells = [subject]
         alive = described_class.new
-        dead  = described_class.new.live
+        dead  = described_class.new.inhale.exhale
         subject << alive
         subject << dead
         @cells <<  dead << alive
 
-        @cells.each {|c| c.live }
+        @cells.each {|c| c.inhale }
+        @cells.each {|c| c.exhale }
       end
 
       it "dies from under-population" do
@@ -98,7 +100,8 @@ describe Cell do
           @cells << cell
         end
 
-        @cells.each {|c| c.live }
+        @cells.each {|c| c.inhale }
+        @cells.each {|c| c.exhale }
       end
 
       it "dies from overcrowding" do
@@ -110,7 +113,7 @@ describe Cell do
 
     context "when cell is currently dead" do
       before :each do
-        subject.live.live.live
+        subject.inhale.exhale.inhale.exhale
       end
 
       context "and it has only 2 live neighbors" do
@@ -122,7 +125,8 @@ describe Cell do
             @cells << cell
           end
 
-          @cells.each {|c| c.live }
+          @cells.each {|c| c.inhale }
+          @cells.each {|c| c.exhale }
         end
 
         it "should stay dead" do
@@ -140,7 +144,8 @@ describe Cell do
             @cells << cell
           end
 
-          @cells.each {|c| c.live }
+          @cells.each {|c| c.inhale }
+          @cells.each {|c| c.exhale }
         end
 
         it "becomes alive by reproduction" do
