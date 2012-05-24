@@ -1,23 +1,22 @@
 class Cell
   def initialize
+    @alive = true
     @neighbors = []
-  end
-
-  def tick
-    @neighbors.each do |n|
-      n.impact(self)
-    end
-    p @impacts
-    @alive = !@neighbors.empty?
-  end
-
-  def impact(neighbor)
-    @impacts ||= 0
-    @impacts += 1
   end
 
   def <<(neighbor)
     @neighbors << neighbor
+  end
+
+  def nudge(nudger)
+    nudger.nudge(self) if @alive
+  end
+
+  def live
+    @nudges = 0
+    @neighbors.each {|n| n.nudge(self) }
+    @alive = @nudges > 0
+    self
   end
 
 end
