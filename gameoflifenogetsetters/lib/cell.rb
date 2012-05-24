@@ -16,28 +16,16 @@ class Cell
     end
   end
 
-  def inhale
-    @interacted = []
+  def live
     if @alive
+      @interacted = []
       @neighbors.each {|n| n.interact(self) }
-    end
-    self
-  end
-
-  def exhale
-    if @alive
       @alive = survives?
-    else
-      @alive = isborn?
     end
     self
   end
 
   private
-
-  def isborn?
-    @interacted.length == 3
-  end
 
   def survives?
     not overcrowded? and not underpopulated?
