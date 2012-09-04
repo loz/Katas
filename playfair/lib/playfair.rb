@@ -6,11 +6,36 @@ class Playfair
   end
 
   def encode(message)
+    message = sanitize_message(message)
     digraphs = split_message(message)
     digraphs.map {|d| encode_digraph(d) }.join""
   end
 
   private
+
+  def sanitize_message(message)
+    pad_message(message.upcase.gsub(/[^A-Z]/, ''))
+  end
+
+  def pad_message(message)
+    message = pad_pairs(message)
+    if message.length.odd?
+      message + "Z"
+    else
+      message
+    end
+  end
+
+  def pad_pairs(message)
+    last = message.length.odd? ? message[-1] : ""
+    message.scan(/\w{2}/).map do |d|
+      if d[0] == d[1]
+        "#{d[0]}X#{d[0]}"
+      else
+        d
+      end
+    end.join + last
+  end
 
   def split_message(message)
     message.scan(/\w{2}/).map {|d| analyse_digraph(d) }

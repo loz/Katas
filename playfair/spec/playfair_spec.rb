@@ -47,7 +47,7 @@ describe Playfair do
   end
 
   it "strips out non letters" do
-    subject.encode("this is a sentence.").should == subject.encode("THISISASENTENCE")
+    subject.encode("this is a message.").should == subject.encode("THISISAMESSAGE")
   end
 
   describe "for a known key and cyphered text" do
