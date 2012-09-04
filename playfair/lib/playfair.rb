@@ -14,7 +14,13 @@ class Playfair
   private
 
   def sanitize_message(message)
-    pad_message(message.upcase.gsub(/[^A-Z]/, ''))
+    message = message.upcase.gsub(/[^A-Z]/, '')
+    message = replace_equivelants(message)
+    pad_message(message)
+  end
+
+  def replace_equivelants(message)
+    message.gsub('J', 'I')
   end
 
   def pad_message(message)
@@ -57,6 +63,8 @@ class Playfair
     else
       encode_rectangle(digraph)
     end
+  #rescue
+  #  puts "Unable to Encode '#{digraph}'"
   end
 
   def horizontal?(digraph)

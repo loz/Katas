@@ -50,6 +50,10 @@ describe Playfair do
     subject.encode("this is a message.").should == subject.encode("THISISAMESSAGE")
   end
 
+  it "substitutes J with I" do
+    subject.encode("AJA").should == subject.encode("AIA")
+  end
+
   describe "for a known key and cyphered text" do
     let(:playfair) do
       "PLAYF" +
