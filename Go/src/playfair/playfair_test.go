@@ -10,17 +10,29 @@ var keytext string = "ABCDE" +
 
 var subject Playfair = *NewPlayfair(keytext)
 
-func TestEncodesAsDownshiftedForDigraphInAColumn(t *testing.T) {
-  values := map[string]string{
-    "CN": "HS",
-    "MW": "RB",
-    "UK": "ZP",
-  }
-
+func AssertEncodings(values map[string]string, t *testing.T) {
   for plaintext, expected := range values {
     actual := subject.encode(plaintext)
     if actual != expected {
       t.Error("Expected", expected, "Got", actual)
     }
   }
+}
+
+func TestEncodesAsDownshiftedForDigraphInAColumn(t *testing.T) {
+  values := map[string]string{
+    "CN": "HS",
+    "MW": "RB",
+    "UK": "ZP",
+  }
+  AssertEncodings(values, t)
+}
+
+func TestEncodesAsRightshiftedForDigraphInARow(t *testing.T) {
+  values := map[string]string{
+    "AB": "BC",
+    "KG": "FH",
+    "QS": "RT",
+  }
+  AssertEncodings(values, t)
 }
