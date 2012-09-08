@@ -3,6 +3,7 @@ class Playfair
 
   def initialize(keytext)
     @key = keytext.scan /\w{5}/
+    build_map
   end
 
   def encode(message)
@@ -48,11 +49,7 @@ class Playfair
   end
 
   def analyse_digraph(chars)
-    chars.each_char.map do |c|
-      char = DigraphChar.new :char => c
-      char.x, char.y = charpos(c)
-      char
-    end
+    chars.each_char.map { |c| DigraphChar.new c, *charpos(c) }
   end
 
   def encode_digraph(digraph)
@@ -63,8 +60,6 @@ class Playfair
     else
       encode_rectangle(digraph)
     end
-  #rescue
-  #  puts "Unable to Encode '#{digraph}'"
   end
 
   def horizontal?(digraph)
@@ -76,42 +71,31 @@ class Playfair
   end
 
   def encode_horizontal(digraph)
-    digraph.map do |char|
-      e_x = if char.x == 4
-        0
-      else
-        char.x + 1
-      end
-      @key[char.y][e_x]
-    end.join
+    digraph.map { |c| @key[c.y][(c.x + 1) % 5] }.join
   end
 
   def encode_vertically(digraph)
-    digraph.map do |char|
-      e_y = if char.y == 4
-        0
-      else
-        char.y + 1
-      end
-      @key[e_y][char.x]
-    end.join
+    digraph.map { |c| @key[(c.y + 1) % 5][c.x] }.join
   end
 
   def encode_rectangle(digraph)
     a, b = digraph
-    chars = @key[a.y][b.x]
-    chars << @key[b.y][a.x]
+    @key[a.y][b.x] + @key[b.y][a.x]
+  end
+
+  def build_map
+    @charmap = {}
+    @key.each_index do |y|
+      row = @key[y]
+      x = 0
+      row.each_char do |c|
+        @charmap[c] = [x,y]
+        x+= 1
+      end
+    end
   end
 
   def charpos(char)
-    x, y = 0, 0
-    @key.each do |row|
-      if row.include?(char)
-        x = row.index(char)
-        break
-      end
-      y += 1
-    end
-    [x, y]
+    @charmap[char]
   end
 end
