@@ -42,18 +42,43 @@
     return self;
 }
 
+-(BOOL)isInColumn:(NSArray *)a withB:(NSArray *)b {
+    return [a[0] integerValue] == [b[0] integerValue];
+}
+
 -(NSString *)encode:(NSString *)plain {
-    NSInteger x, y;
     NSArray *a, *b;
-    NSString *enc_a, *enc_b;
     a = [_charmap valueForKey:[self charString:plain atIndex:0]];
     b = [_charmap valueForKey:[self charString:plain atIndex:1]];
+    if ([self isInColumn:a withB:b]) {
+        return [self downShiftDigraphA:a andB:b];
+    } else {
+        return [self rightShiftDigraphA:a andB:b];
+    }
+
+}
+
+-(NSString *)downShiftDigraphA:(NSArray *)a andB:(NSArray *)b {
+    NSInteger x, y;
+    NSString *enc_a, *enc_b;
     x = [a[0] integerValue];
     y = [a[1] integerValue];
     enc_a = [self charAtX:x andY:((y+1) % 5)];
     x = [b[0] integerValue];
     y = [b[1] integerValue];
     enc_b = [self charAtX:x andY:((y+1) % 5)];
+    return [NSString stringWithFormat:@"%@%@", enc_a, enc_b];
+}
+
+-(NSString *)rightShiftDigraphA:(NSArray *)a andB:(NSArray *)b {
+    NSInteger x, y;
+    NSString *enc_a, *enc_b;
+    x = [a[0] integerValue];
+    y = [a[1] integerValue];
+    enc_a = [self charAtX:((x+1) % 5) andY:y];
+    x = [b[0] integerValue];
+    y = [b[1] integerValue];
+    enc_b = [self charAtX:((x+1) % 5) andY:y];
     return [NSString stringWithFormat:@"%@%@", enc_a, enc_b];
 }
 @end

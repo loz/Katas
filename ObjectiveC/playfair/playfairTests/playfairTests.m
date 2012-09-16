@@ -44,4 +44,11 @@
     [self assertEncodings:values];
 }
 
+- (void)testEncodAsRightshiftedForDigraphInRow {
+    NSDictionary *values = [[NSDictionary alloc] initWithObjectsAndKeys:@"BC", @"AB",
+                            @"FH", @"KG",
+                            @"RT", @"QS", nil];
+    [self assertEncodings:values];
+}
+
 @end
