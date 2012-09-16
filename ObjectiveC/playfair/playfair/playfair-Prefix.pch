@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'playfair' target in the 'playfair' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

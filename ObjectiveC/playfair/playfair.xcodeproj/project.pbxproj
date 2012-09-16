@@ -1,0 +1,414 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A82F4FC16064C2A000EBDEC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A82F4FB16064C2A000EBDEC /* Cocoa.framework */; };
+		9A82F50616064C2A000EBDEC /* playfair.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A82F50516064C2A000EBDEC /* playfair.m */; };
+		9A82F50E16064C2A000EBDEC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A82F50D16064C2A000EBDEC /* SenTestingKit.framework */; };
+		9A82F50F16064C2A000EBDEC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A82F4FB16064C2A000EBDEC /* Cocoa.framework */; };
+		9A82F51216064C2A000EBDEC /* playfair.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A82F4F816064C2A000EBDEC /* playfair.dylib */; };
+		9A82F51816064C2A000EBDEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A82F51616064C2A000EBDEC /* InfoPlist.strings */; };
+		9A82F51B16064C2A000EBDEC /* playfairTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A82F51A16064C2A000EBDEC /* playfairTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A82F51016064C2A000EBDEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A82F4EF16064C2A000EBDEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A82F4F716064C2A000EBDEC;
+			remoteInfo = playfair;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A82F4F816064C2A000EBDEC /* playfair.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = playfair.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A82F4FB16064C2A000EBDEC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		9A82F4FE16064C2A000EBDEC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		9A82F4FF16064C2A000EBDEC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9A82F50016064C2A000EBDEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9A82F50316064C2A000EBDEC /* playfair-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "playfair-Prefix.pch"; sourceTree = "<group>"; };
+		9A82F50416064C2A000EBDEC /* playfair.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = playfair.h; sourceTree = "<group>"; };
+		9A82F50516064C2A000EBDEC /* playfair.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = playfair.m; sourceTree = "<group>"; };
+		9A82F50C16064C2A000EBDEC /* playfairTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playfairTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A82F50D16064C2A000EBDEC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		9A82F51516064C2A000EBDEC /* playfairTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "playfairTests-Info.plist"; sourceTree = "<group>"; };
+		9A82F51716064C2A000EBDEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9A82F51916064C2A000EBDEC /* playfairTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = playfairTests.h; sourceTree = "<group>"; };
+		9A82F51A16064C2A000EBDEC /* playfairTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = playfairTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A82F4F516064C2A000EBDEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A82F4FC16064C2A000EBDEC /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A82F50816064C2A000EBDEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A82F50E16064C2A000EBDEC /* SenTestingKit.framework in Frameworks */,
+				9A82F50F16064C2A000EBDEC /* Cocoa.framework in Frameworks */,
+				9A82F51216064C2A000EBDEC /* playfair.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A82F4ED16064C2A000EBDEC = {
+			isa = PBXGroup;
+			children = (
+				9A82F50116064C2A000EBDEC /* playfair */,
+				9A82F51316064C2A000EBDEC /* playfairTests */,
+				9A82F4FA16064C2A000EBDEC /* Frameworks */,
+				9A82F4F916064C2A000EBDEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A82F4F916064C2A000EBDEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F4F816064C2A000EBDEC /* playfair.dylib */,
+				9A82F50C16064C2A000EBDEC /* playfairTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A82F4FA16064C2A000EBDEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F4FB16064C2A000EBDEC /* Cocoa.framework */,
+				9A82F50D16064C2A000EBDEC /* SenTestingKit.framework */,
+				9A82F4FD16064C2A000EBDEC /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A82F4FD16064C2A000EBDEC /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F4FE16064C2A000EBDEC /* AppKit.framework */,
+				9A82F4FF16064C2A000EBDEC /* CoreData.framework */,
+				9A82F50016064C2A000EBDEC /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		9A82F50116064C2A000EBDEC /* playfair */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F50416064C2A000EBDEC /* playfair.h */,
+				9A82F50516064C2A000EBDEC /* playfair.m */,
+				9A82F50216064C2A000EBDEC /* Supporting Files */,
+			);
+			path = playfair;
+			sourceTree = "<group>";
+		};
+		9A82F50216064C2A000EBDEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F50316064C2A000EBDEC /* playfair-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A82F51316064C2A000EBDEC /* playfairTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F51916064C2A000EBDEC /* playfairTests.h */,
+				9A82F51A16064C2A000EBDEC /* playfairTests.m */,
+				9A82F51416064C2A000EBDEC /* Supporting Files */,
+			);
+			path = playfairTests;
+			sourceTree = "<group>";
+		};
+		9A82F51416064C2A000EBDEC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A82F51516064C2A000EBDEC /* playfairTests-Info.plist */,
+				9A82F51616064C2A000EBDEC /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9A82F4F616064C2A000EBDEC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9A82F4F716064C2A000EBDEC /* playfair */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A82F51E16064C2B000EBDEC /* Build configuration list for PBXNativeTarget "playfair" */;
+			buildPhases = (
+				9A82F4F416064C2A000EBDEC /* Sources */,
+				9A82F4F516064C2A000EBDEC /* Frameworks */,
+				9A82F4F616064C2A000EBDEC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = playfair;
+			productName = playfair;
+			productReference = 9A82F4F816064C2A000EBDEC /* playfair.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		9A82F50B16064C2A000EBDEC /* playfairTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A82F52116064C2B000EBDEC /* Build configuration list for PBXNativeTarget "playfairTests" */;
+			buildPhases = (
+				9A82F50716064C2A000EBDEC /* Sources */,
+				9A82F50816064C2A000EBDEC /* Frameworks */,
+				9A82F50916064C2A000EBDEC /* Resources */,
+				9A82F50A16064C2A000EBDEC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A82F51116064C2A000EBDEC /* PBXTargetDependency */,
+			);
+			name = playfairTests;
+			productName = playfairTests;
+			productReference = 9A82F50C16064C2A000EBDEC /* playfairTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A82F4EF16064C2A000EBDEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Jonathan Lozinski";
+			};
+			buildConfigurationList = 9A82F4F216064C2A000EBDEC /* Build configuration list for PBXProject "playfair" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9A82F4ED16064C2A000EBDEC;
+			productRefGroup = 9A82F4F916064C2A000EBDEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A82F4F716064C2A000EBDEC /* playfair */,
+				9A82F50B16064C2A000EBDEC /* playfairTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A82F50916064C2A000EBDEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A82F51816064C2A000EBDEC /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9A82F50A16064C2A000EBDEC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A82F4F416064C2A000EBDEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A82F50616064C2A000EBDEC /* playfair.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A82F50716064C2A000EBDEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A82F51B16064C2A000EBDEC /* playfairTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A82F51116064C2A000EBDEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A82F4F716064C2A000EBDEC /* playfair */;
+			targetProxy = 9A82F51016064C2A000EBDEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9A82F51616064C2A000EBDEC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A82F51716064C2A000EBDEC /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A82F51C16064C2A000EBDEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9A82F51D16064C2A000EBDEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9A82F51F16064C2B000EBDEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "playfair/playfair-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9A82F52016064C2B000EBDEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "playfair/playfair-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9A82F52216064C2B000EBDEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "playfair/playfair-Prefix.pch";
+				INFOPLIST_FILE = "playfairTests/playfairTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		9A82F52316064C2B000EBDEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "playfair/playfair-Prefix.pch";
+				INFOPLIST_FILE = "playfairTests/playfairTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A82F4F216064C2A000EBDEC /* Build configuration list for PBXProject "playfair" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A82F51C16064C2A000EBDEC /* Debug */,
+				9A82F51D16064C2A000EBDEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A82F51E16064C2B000EBDEC /* Build configuration list for PBXNativeTarget "playfair" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A82F51F16064C2B000EBDEC /* Debug */,
+				9A82F52016064C2B000EBDEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9A82F52116064C2B000EBDEC /* Build configuration list for PBXNativeTarget "playfairTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A82F52216064C2B000EBDEC /* Debug */,
+				9A82F52316064C2B000EBDEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A82F4EF16064C2A000EBDEC /* Project object */;
+}
