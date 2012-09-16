@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface playfair : NSObject
+@interface Playfair : NSObject
+
+-(id)initWithKeyText:(NSString *)keytext;
+-(NSString *)encode:(NSString *)plain;
+
+@property NSString *keytext;
+@property NSMutableDictionary *charmap;
 
 @end

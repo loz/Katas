@@ -7,7 +7,8 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "playfair.h"
 
 @interface playfairTests : SenTestCase
-
+    @property Playfair *subject;
 @end

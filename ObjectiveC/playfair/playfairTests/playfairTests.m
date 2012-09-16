@@ -15,6 +15,12 @@
     [super setUp];
     
     // Set-up code here.
+    NSString *keytext = @"ABCDE"
+                         "FGHIK"
+                         "LMNOP"
+                         "QRSTU"
+                         "VWXYZ";
+    _subject = [[Playfair alloc] initWithKeyText:keytext];
 }
 
 - (void)tearDown
@@ -24,9 +30,18 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in playfairTests");
+- (void)assertEncodings:(NSDictionary *)values {
+    [values enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        STAssertEqualObjects(obj, [_subject encode:key], @"Expected Encoding Failed");
+    }];
+}
+
+- (void)testEncodeAsDownshiftForDigraphInColumn
+{    
+    NSDictionary *values = [[NSDictionary alloc] initWithObjectsAndKeys:@"HS", @"CN",
+                            @"RB", @"MW",
+                            @"ZP", @"UK", nil];
+    [self assertEncodings:values];
 }
 
 @end
