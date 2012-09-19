@@ -46,16 +46,25 @@
     return [a[0] integerValue] == [b[0] integerValue];
 }
 
+-(BOOL)isInRow:(NSArray *)a withB:(NSArray *)b {
+    return [a[1] integerValue] == [b[1] integerValue];
+}
+
 -(NSString *)encode:(NSString *)plain {
+    return [self encodeDigraph:plain];
+}
+
+-(NSString *)encodeDigraph:(NSString *)digraph {
     NSArray *a, *b;
-    a = [_charmap valueForKey:[self charString:plain atIndex:0]];
-    b = [_charmap valueForKey:[self charString:plain atIndex:1]];
+    a = [_charmap valueForKey:[self charString:digraph atIndex:0]];
+    b = [_charmap valueForKey:[self charString:digraph atIndex:1]];
     if ([self isInColumn:a withB:b]) {
         return [self downShiftDigraphA:a andB:b];
-    } else {
+    } else if ([self isInRow:a withB:b]) {
         return [self rightShiftDigraphA:a andB:b];
+    } else {
+        return [self encodeRectangleA:a toB:b];
     }
-
 }
 
 -(NSString *)downShiftDigraphA:(NSArray *)a andB:(NSArray *)b {
@@ -79,6 +88,18 @@
     x = [b[0] integerValue];
     y = [b[1] integerValue];
     enc_b = [self charAtX:((x+1) % 5) andY:y];
+    return [NSString stringWithFormat:@"%@%@", enc_a, enc_b];
+}
+
+-(NSString *)encodeRectangleA:(NSArray *)a toB:(NSArray *)b {
+    NSInteger ax, ay, bx, by;
+    NSString *enc_a, *enc_b;
+    ax = [a[0] integerValue];
+    ay = [a[1] integerValue];
+    bx = [b[0] integerValue];
+    by = [b[1] integerValue];
+    enc_a = [self charAtX:bx andY:ay];
+    enc_b = [self charAtX:ax andY:by];
     return [NSString stringWithFormat:@"%@%@", enc_a, enc_b];
 }
 @end

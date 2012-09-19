@@ -51,4 +51,20 @@
     [self assertEncodings:values];
 }
 
+- (void)testEncodeOppositeCornersForRectangle {
+    NSDictionary *values = [[NSDictionary alloc] initWithObjectsAndKeys:@"AZ", @"EV",
+                            @"GP", @"KM",
+                            @"YB", @"WD", nil];
+    [self assertEncodings:values];
+}
+/*
+- (void)testEncodesDigraphPairs {
+    NSString *expected, *actual, *plaintext;
+    plaintext = @"CNABEV";
+    expected  = @"HSBCAZ";
+    actual = [_subject encode:plaintext];
+    
+    STAssertEqualObjects(expected, actual, @"expected to encode digraph pairs");
+}
+*/
 @end
