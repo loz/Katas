@@ -51,7 +51,47 @@
 }
 
 -(NSString *)encode:(NSString *)plain {
-    return [self encodeDigraph:plain];
+    plain = [self padString:plain];
+    NSMutableString *encoded = [[NSMutableString alloc] initWithString:@""];
+    NSString *digraph;
+    NSArray *digraphs;
+    digraphs = [self splitDigraphs:plain];
+    for (digraph in digraphs) {
+        [encoded appendString:[self encodeDigraph:digraph]];
+    }
+    return encoded;
+}
+
+-(NSString *)padString:(NSString *)plain {
+    if (([plain length] % 2) == 0) {
+        return plain;
+    } else {
+        return [NSString stringWithFormat:@"%@Z", plain];
+    }
+}
+
+-(NSArray *)splitDigraphs:(NSString *)string {
+    NSInteger digraph_count = [string length];
+    NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity:[string length]/2];
+    NSMutableString *part;
+    unichar a, b;
+    for(int i=0; i<digraph_count; i+=2) {
+        a = [string characterAtIndex:i];
+        if (i == digraph_count-1) {
+            part = [NSString stringWithFormat:@"%cZ", a];
+        } else {
+            b = [string characterAtIndex:i+1];
+            if (a == b) {
+                //Pad identical chars with X
+                part = [NSString stringWithFormat:@"%cX", a];
+                i--;
+            } else {
+                part = [NSString stringWithFormat:@"%c%c", a, b];
+            }
+        }
+        [parts addObject:part];
+    }
+    return parts;
 }
 
 -(NSString *)encodeDigraph:(NSString *)digraph {

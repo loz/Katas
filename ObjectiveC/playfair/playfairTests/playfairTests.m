@@ -57,7 +57,7 @@
                             @"YB", @"WD", nil];
     [self assertEncodings:values];
 }
-/*
+
 - (void)testEncodesDigraphPairs {
     NSString *expected, *actual, *plaintext;
     plaintext = @"CNABEV";
@@ -66,5 +66,18 @@
     
     STAssertEqualObjects(expected, actual, @"expected to encode digraph pairs");
 }
-*/
+
+-(void)testPadsIdenticalDigraphLettersWithX {
+    STAssertEqualObjects([_subject encode:@"TREE"],
+                         [_subject encode:@"TREXE"],
+                         @"expected to X-pad");
+    STAssertFalse([_subject encode:@"TOO"] == [_subject encode:@"TOXO"],
+                  @"expected to not X-pad");
+}
+
+-(void)testPadsOddLastDigraphWithZ {
+    STAssertEqualObjects([_subject encode:@"ONE"],
+                         [_subject encode:@"ONEZ"],
+                         @"expected to Z-pad");
+}
 @end
