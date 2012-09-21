@@ -51,6 +51,7 @@
 }
 
 -(NSString *)encode:(NSString *)plain {
+    plain = [self sanitizeString:plain];
     plain = [self padString:plain];
     NSMutableString *encoded = [[NSMutableString alloc] initWithString:@""];
     NSString *digraph;
@@ -60,6 +61,13 @@
         [encoded appendString:[self encodeDigraph:digraph]];
     }
     return encoded;
+}
+
+-(NSString *)sanitizeString:(NSString *)plain {
+    NSString *upper = [plain uppercaseString];
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[^A-Z]" options:NSRegularExpressionCaseInsensitive error:&error];
+    return [regex stringByReplacingMatchesInString:upper options:0 range:NSMakeRange(0,[upper length]) withTemplate:@""];
 }
 
 -(NSString *)padString:(NSString *)plain {

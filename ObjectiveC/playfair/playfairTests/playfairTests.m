@@ -80,4 +80,23 @@
                          [_subject encode:@"ONEZ"],
                          @"expected to Z-pad");
 }
+
+-(void)testUpcasesAllLetters {
+    STAssertEqualObjects([_subject encode:@"oNe"],
+                         [_subject encode:@"ONE"],
+                         @"Expected to upcase");
+}
+
+-(void)testStripsNonAlphanumeric {
+    STAssertEqualObjects([_subject encode:@"This is a message!"],
+                         [_subject encode:@"THISISAMESSAGE"],
+                         @"Expected to strip non alphas");
+}
+
+-(void)testSubstitutesIforJ {
+    STAssertEqualObjects([_subject encode:@"AJA"],
+                         [_subject encode:@"AIA"],
+                         @"Expected to substitute J with I");
+}
+
 @end
