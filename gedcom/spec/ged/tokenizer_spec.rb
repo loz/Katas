@@ -82,7 +82,9 @@ describe GED::Tokenizer do
     describe "When new line level is lower" do
       let(:line) { {:level => 0, :id => "@ID1@", :value => "ANODE"} }
       let(:nextline) { {:level => 1, :tag => "ATAG", :value => "Child Value"} }
-      let(:anotherline) { {:level => 2, :tag => "ATAG", :value => "GrandChild Value"} }
+      let(:anotherline) do
+        {:level => 2, :tag => "ATAG", :value => "GrandChild Value"}
+      end
       let(:lowerline) { {:level => 0, :id => "@ID2@", :value => "ANTHR"} }
 
       before :each do
