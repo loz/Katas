@@ -23,8 +23,9 @@
 }
 
 -(id)initWithKeyText:(NSString *)keytext {
+    NSArray *coord;
     self = [super init];
-    _charmap = [[NSMutableDictionary alloc] initWithCapacity:25];
+    _charmap = [[NSMutableDictionary alloc] initWithCapacity:26];
     if(self) {
         _keytext = [keytext copy];
         int pos = (int)[keytext length];
@@ -34,11 +35,13 @@
         for (i=0; i<pos; i++) {
             x = [NSNumber numberWithInt:(i % 5)];
             y = [NSNumber numberWithInt:(i / 5)];
-            NSArray *coord = [[NSArray alloc] initWithObjects:x, y, nil];
+            coord = [[NSArray alloc] initWithObjects:x, y, nil];
             character = [self charString:keytext atIndex:i];
             [_charmap setValue:coord forKey:character];
         }
     }
+    coord = [_charmap valueForKey:@"I"];
+    [_charmap setValue:coord forKey:@"J"];
     return self;
 }
 
