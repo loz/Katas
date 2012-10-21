@@ -1,0 +1,30 @@
+Task:
+=====
+
+Build a webapp where I can search for a Github user and see a score based on their activity.
+
+- The app should be able to update itself regularly with their recent events.
+- I want to see their score for separate weeks.
+- Some kind of caching might be useful (weekly score total for each user?)
+
+Resources:
+==========
+
+- User data feeds:
+ - https://github.com/ry.json
+ - https://github.com/tenderlove.json
+ - https://githum.com/gitster.json
+
+- Important fields: repository.url, created_at, actor, type
+
+- Event types & points:
+  - CommitCommentEvent 2
+  - IssueCommentEvent  2
+  - IssuesEvent        3
+  - WatchEvent         1
+  - PullRequestEvent   5
+  - PushEvent          7
+  - FollowEvent        1
+  - CreateEvent        3
+
+
