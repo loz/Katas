@@ -7,7 +7,10 @@ GEM
     guard-rspec (2.1.0)
       guard (>= 1.1)
       rspec (~> 2.11)
+    httpi (1.1.1)
+      rack
     listen (0.5.3)
+    rack (1.4.1)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -23,3 +26,4 @@ PLATFORMS
 
 DEPENDENCIES
   guard-rspec
+  httpi
