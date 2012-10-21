@@ -13,7 +13,7 @@
 - (void)setUp
 {
     [super setUp];
-    
+
     // Set-up code here.
     NSString *keytext = @"ABCDE"
                          "FGHIK"
@@ -26,7 +26,7 @@
 - (void)tearDown
 {
     // Tear-down code here.
-    
+
     [super tearDown];
 }
 
@@ -37,7 +37,7 @@
 }
 
 - (void)testEncodeAsDownshiftForDigraphInColumn
-{    
+{
     NSDictionary *values = [[NSDictionary alloc] initWithObjectsAndKeys:@"HS", @"CN",
                             @"RB", @"MW",
                             @"ZP", @"UK", nil];
@@ -63,7 +63,7 @@
     plaintext = @"CNABEV";
     expected  = @"HSBCAZ";
     actual = [_subject encode:plaintext];
-    
+
     STAssertEqualObjects(expected, actual, @"expected to encode digraph pairs");
 }
 
