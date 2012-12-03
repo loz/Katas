@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 class Arigeom
   def permutations(set)
     options = []
@@ -21,30 +23,49 @@ class Arigeom
   end
 
   def find_geometric(set)
-    options = permutations(set)
-    changes = options.map { |o| {set: o, change: geometric_change(o)} }
-    sets = changes.select {|o| o[:change].uniq.length == 1 }
-    sets = sets.map { |o| o[:set] }
-    sets.last
+    combination_select(set) do |combi|
+      geometric_change(combi)
+    end.last
   end
 
   def find_arithmetic(set)
-    options = permutations(set)
-    changes = options.map { |o| {set: o, change: arithmetic_change(o)} }
-    sets = changes.select {|o| o[:change].uniq.length == 1 }
-    sets = sets.map { |o| o[:set] }
-    sets.last
+    combination_select(set) do |combi|
+      arithmetic_change(combi)
+    end.last
   end
 
   private
 
+  def combination_select(set, &block)
+    selected  = []
+    (2..set.length).each do |size|
+      set.combination(size).each do |s|
+        changes = yield s
+        if changes.uniq.size == 1
+          selected << s
+        end
+      end
+    end
+    selected
+  end
+
   def differ(set, &block)
-    options = set.dup
-    last = options.shift
-    options.map do |s|
+    last = set.first
+    set[1..-1].map do |s|
       change = yield(s, last)
       last = s
       change
     end
+  end
+end
+
+if __FILE__ == $0
+  finder = Arigeom.new
+  tests = readline.chomp.to_i
+  tests.times do
+    _ = readline
+    set = readline.split(' ').map &:to_i
+    puts finder.find_arithmetic(set).join(" ")
+    puts finder.find_geometric(set).join(" ")
   end
 end
