@@ -2,24 +2,6 @@ require 'spec_helper'
 
 describe Arigeom do
   subject { described_class.new }
-  describe :permutations do
-    it "returns arrays of possibe sets for current length" do
-      result = subject.permutations [1,2,3,4]
-      result.to_a.should == [
-        [1,2],
-        [1,3],
-        [1,4],
-        [2,3],
-        [2,4],
-        [3,4],
-        [1,2,3],
-        [1,2,4],
-        [1,3,4],
-        [2,3,4],
-        [1,2,3,4]
-      ]
-    end
-  end
 
   describe :geometric_change do
     it "returns difference ratio between numbers" do

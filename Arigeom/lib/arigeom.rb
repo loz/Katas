@@ -1,15 +1,6 @@
 #!/usr/bin/env ruby
 
 class Arigeom
-  def permutations(set)
-    options = []
-    (2..set.length).each do |size|
-      o = set.combination(size).to_a
-      options += o
-    end
-    options
-  end
-
   def geometric_change(set)
     differ(set) do |cur, last|
       cur.to_f / last.to_f
@@ -23,30 +14,30 @@ class Arigeom
   end
 
   def find_geometric(set)
-    combination_select(set) do |combi|
+    combination_detect(set) do |combi|
       geometric_change(combi)
-    end.last
+    end
   end
 
   def find_arithmetic(set)
-    combination_select(set) do |combi|
+    combination_detect(set) do |combi|
       arithmetic_change(combi)
-    end.last
+    end
   end
 
   private
 
-  def combination_select(set, &block)
+  def combination_detect(set, &block)
     selected  = []
-    (2..set.length).each do |size|
+    set.length.downto(2) do |size|
       set.combination(size).each do |s|
         changes = yield s
         if changes.uniq.size == 1
-          selected << s
+          return s
         end
       end
     end
-    selected
+    nil
   end
 
   def differ(set, &block)
