@@ -1,9 +1,11 @@
 class SexpWalker
 
   class Node
-    attr_reader :children
-    def initialize(children)
+    attr_reader :children, :args, :body
+    def initialize(children, args, body)
       @children = children
+      @args = args
+      @body = body
     end
 
     def line
@@ -12,7 +14,12 @@ class SexpWalker
     end
   end
   class Program < Node; end
-  class Def < Node; end
+  class Def < Node
+    def body
+      _, nodes = @body
+      nodes
+    end
+  end
 
   NODES = {
     :program => Program,
@@ -31,12 +38,12 @@ class SexpWalker
   private
 
   def objectify_node(node)
-    token, items = node
+    token, items, args, body = node
     klass = NODES[token]
     if klass
       items = filter_void(items)
       items = map_nodes(items)
-      NODES[token].new(items)
+      NODES[token].new(items, args, body)
     else
       node
     end

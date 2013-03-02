@@ -9,6 +9,18 @@ def foo; end
 def bar; end
 RUBY
   end
+
+  let(:bodies) do
+      <<-RUBY
+def foo
+  :foo
+end
+
+def bar
+  :bar
+end
+RUBY
+  end
   describe "#walk" do
     it "returns empty program" do
       sexp = Ripper.sexp(empty)
@@ -47,6 +59,14 @@ RUBY
       defs[1].line.should == 2
     end
 
+    it "identfies body of methods" do
+      sexp = Ripper.sexp(bodies)
+      walker = described_class.new(sexp)
+
+      defs = walker.walk.children
+      defs[0].body.should == [[:symbol_literal, [:symbol, [:@ident, "foo", [2, 3]]]]]
+      defs[1].body.should == [[:symbol_literal, [:symbol, [:@ident, "bar", [6, 3]]]]]
+    end
 
   end
 end
