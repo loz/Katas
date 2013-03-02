@@ -1,28 +1,50 @@
 class SexpWalker
+
+  class Node
+    attr_reader :children
+    def initialize(children)
+      @children = children
+    end
+
+    def line
+      _, _, pos = @children
+      pos[0]
+    end
+  end
+  class Program < Node; end
+  class Def < Node; end
+
+  NODES = {
+    :program => Program,
+    :def => Def
+  }
   attr_reader :sexp
 
   def initialize(sexp)
     @sexp = sexp
   end
 
-  def to_hash
-    hashify_node(sexp)
+  def walk
+    objectify_node(sexp)
   end
 
   private
 
-  def hashify_node(node)
+  def objectify_node(node)
     token, items = node
-    if items.is_a? Array
+    klass = NODES[token]
+    if klass
       items = filter_void(items)
       items = map_nodes(items)
+      NODES[token].new(items)
+    else
+      node
     end
-    {token => items}
   end
 
   def map_nodes(nodes)
     nodes.map do |node|
-      hashify_node(node)
+      objectify_node(node)
     end
   end
 

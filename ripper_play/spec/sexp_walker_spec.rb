@@ -9,29 +9,44 @@ def foo; end
 def bar; end
 RUBY
   end
-  describe "#to_hash" do
+  describe "#walk" do
     it "returns empty program" do
       sexp = Ripper.sexp(empty)
       walker = described_class.new(sexp)
 
-      walker.to_hash.should== {:program => []}
+      program = walker.walk
+      program.should be_a SexpWalker::Program
+      program.should have(0).children
     end
 
     it "returns array of program code" do
       sexp = Ripper.sexp(twodef)
       walker = described_class.new(sexp)
 
-      walker.to_hash[:program].should have(2).items
+      program = walker.walk
+      program.should have(2).children
     end
 
-    it "hashes the children of a node" do
+    it "walks the children of a node" do
       sexp = Ripper.sexp(twodef)
       walker = described_class.new(sexp)
 
-      defs = walker.to_hash[:program]
-      defs[0][:def].should be
-      defs[1][:def].should be
+      defs = walker.walk.children
+
+      defs.each do |d|
+        d.should be_a SexpWalker::Def
+      end
     end
+
+    it "identifies line of elements" do
+      sexp = Ripper.sexp(twodef)
+      walker = described_class.new(sexp)
+
+      defs = walker.walk.children
+      defs[0].line.should == 1
+      defs[1].line.should == 2
+    end
+
 
   end
 end
