@@ -80,13 +80,21 @@ db_reset
 each_book do |author, name, path|
   puts ""
   puts "Author: #{author}, Name: #{name}, Path:#{path}"
-  paras = paragraphs(path)
+  record_metric("book", :author => author,
+                :title => name)
+  paras = paragraphs(path)[0..100] #only first 100 pararaphs as too large
   paras.each do |para|
+    putc "."
     sents = sentences(para)
+    record_metric("paragraph", :author => author,
+                  :title => name,
+                  :sentences => sents.length)
     sents.each_with_index do |sent, sno|
-      words(sent).each_with_index do |word, wno|
-        putc"."
-        #p "S#{sno}, W#{wno}: #{word}"
+      words = words(sent)
+      record_metric("sentence", :author => author,
+                    :title => name,
+                    :words => words.length)
+      words.each_with_index do |word, wno|
         record_metric("books", :author => author,
                       :title => name,
                       :sentence_number => sno,
