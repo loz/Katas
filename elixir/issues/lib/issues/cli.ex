@@ -19,13 +19,11 @@ defmodule Issues.CLI do
   Return a tuple of `{ user, project, count }`, or `:help` if help was given
   """
   def parse_args(argv) do
-    parse = OptionParser.parse(argv, switches: [ help: :boolean],
+    _parse OptionParser.parse(argv, switches: [ help: :boolean],
                                      aliases: [ h: :help ])
-    case parse do
-      { [ help: true ], _ }            -> :help
-      { _, [ user, project, count ] }  -> { user, project, binary_to_integer(count) }
-      { _, [ user, project ] }         -> { user, project, @default_count }
-      _                                -> :help
-    end
   end
+
+  def _parse({_, [user, project, count]}), do: {user, project, binary_to_integer(count)}
+  def _parse({_, [user, project]}), do: {user, project, @default_count}
+  def _parse(_), do: :help
 end
