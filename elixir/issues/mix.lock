@@ -1,2 +1,4 @@
 [ "httpotion": {:git,"https://github.com/myfreeweb/httpotion.git","58d4f845be141ddc30ae3b60229e3eca0f104922",[]},
-  "ibrowse": {:git,"https://github.com/cmullaparthi/ibrowse.git","b2c3f404ea3c4bdfabab8d110d7f41db07ef65c7",[]} ]
+  "ibrowse": {:git,"https://github.com/cmullaparthi/ibrowse.git","b2c3f404ea3c4bdfabab8d110d7f41db07ef65c7",[]},
+  "jsonex": {:git,"https://github.com/marcelog/jsonex.git","746c8492d66e130ee74cb2d857f8458fe3a2c0e2",[tag: "2.0"]},
+  "jsx": {:git,"https://github.com/talentdeficit/jsx.git","cb14b92a228e51f7bdcaa7eb17f035e4a5c0b47d",[tag: "v1.3.3"]} ]

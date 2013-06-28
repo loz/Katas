@@ -18,7 +18,8 @@ defmodule Issues.Mixfile do
   # { :foobar, "0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [
-      {:httpotion,"0.1.0",[github: "myfreeweb/httpotion"]}
+      {:httpotion,"0.1.0",[github: "myfreeweb/httpotion"]},
+      {:jsonex, "2.0", [github: "marcelog/jsonex", tag: "2.0"]}
     ]
   end
 end

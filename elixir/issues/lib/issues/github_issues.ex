@@ -4,6 +4,8 @@ defmodule Issues.GithubIssues do
   @user_agent ["User-agent": "Elixir dave@pragprog.com"]
 
   def fetch(user, project) do
+    :ssl.start()
+    :ibrowse.start()
     case (HTTPotion.get(issues_url(user, project), @user_agent)) do
       Response[body: body, status_code: status, headers: _headers] when status in 200..209 ->
         {:ok, body}
