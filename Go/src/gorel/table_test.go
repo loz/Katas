@@ -10,6 +10,10 @@ func NewExampleAdapter() *ExampleAdapter {
   return &a
 }
 
+func (self *ExampleAdapter) QuotedTableName(s string) string {
+  return "§" + s + "§"
+}
+
 func assertEqual(t *testing.T, expected string, actual string) {
   if expected != actual {
     t.Error("Expected", expected, "Got", actual)
@@ -18,9 +22,12 @@ func assertEqual(t *testing.T, expected string, actual string) {
 
 var exampleAdapter ExampleAdapter = *NewExampleAdapter()
 
-var subject Table = *NewTable("example", exampleAdapter)
+var exampleTable Table = *NewTable("example", &exampleAdapter)
+var otherTable Table = *NewTable("other", &exampleAdapter)
 
 func TestSelectAllSQL(t *testing.T) {
-  sql := subject.Where("1").ToSql()
+  sql := exampleTable.Where("1").ToSql()
   assertEqual(t, "SELECT * FROM §example§ WHERE 1", sql)
+  sql = otherTable.Where("foo=bar").ToSql()
+  assertEqual(t, "SELECT * FROM §other§ WHERE foo=bar", sql)
 }

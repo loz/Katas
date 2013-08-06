@@ -6,7 +6,7 @@ type Table struct {
 }
 
 func NewTable(name string, adapter Adapter) *Table {
-  t := Table{name,adapter}
+  t := Table{name, adapter}
   t.Init()
   return &t
 }
@@ -15,6 +15,11 @@ func (self *Table) Init() {
 }
 
 func (self *Table) Where(clause string) *Chain {
-  return NewChainFromTable(self)
+  c := NewChainFromTable(self)
+  c.AddWhere(clause)
+  return c
 }
 
+func (self *Table) QuotedName() string {
+  return self.adapter.QuotedTableName(self.name)
+}
