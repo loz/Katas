@@ -2,21 +2,35 @@ package gorel
 
 type Chain struct {
   table *Table
-  wheres string
+  wheres []string
 }
 
 func NewChainFromTable(table *Table) *Chain {
-  c := Chain{table, ""}
+  c := Chain{table, []string{}}
   return &c
 }
 
 func (self *Chain) ToSql() string{
   return "SELECT * FROM " +
     self.table.QuotedName() +
-    " WHERE " +
-    self.wheres
+    self.WhereString()
 }
 
-func (self *Chain) AddWhere(w string) {
-  self.wheres = w
+func (self *Chain) Where(w string) *Chain {
+  self.wheres = append(self.wheres,w)
+  return self
+}
+
+func (self *Chain) WhereString() string {
+  str := " WHERE "
+  wherecount := len(self.wheres) - 1
+  if wherecount == 0 {
+    str += self.wheres[wherecount]
+  } else {
+    for i := 0; i < wherecount; i++ {
+      str += "(" + self.wheres[i] + ") AND "
+    }
+    str += "(" + self.wheres[wherecount] + ")"
+  }
+  return str
 }

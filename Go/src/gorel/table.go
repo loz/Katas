@@ -16,8 +16,7 @@ func (self *Table) Init() {
 
 func (self *Table) Where(clause string) *Chain {
   c := NewChainFromTable(self)
-  c.AddWhere(clause)
-  return c
+  return c.Where(clause)
 }
 
 func (self *Table) QuotedName() string {
